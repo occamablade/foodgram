@@ -1,0 +1,116 @@
+from django.contrib import admin
+
+from .models import (
+    Ingredient,
+    Tag,
+    Recipe,
+    FavoriteRecipe,
+    ShoppingCart,
+    IngredientsInRecipe,
+    Subscribe
+)
+
+
+class IngredientsInRecipeInline(admin.TabularInline):
+    model = IngredientsInRecipe
+    extra = 1
+
+
+@admin.register(Recipe)
+class RecipeAdmin(admin.ModelAdmin):
+
+    inlines = (IngredientsInRecipeInline, )
+
+    list_display = (
+        'id',
+        'name',
+        'author',
+        'count_favorite',
+        'publication_date'
+    )
+    search_fields = (
+        'author',
+        'name',
+        'tags',
+        'publication_date'
+    )
+    list_filter = (
+        'author',
+        'name',
+        'tags'
+    )
+
+    def count_favorite(self, obj):
+        return FavoriteRecipe.objects.filter(recipe=obj).count()
+
+
+@admin.register(Ingredient)
+class IngredientAdmin(admin.ModelAdmin):
+
+    list_display = (
+        'id',
+        'name',
+        'measurement_unit',
+    )
+    list_filter = ('name',)
+    search_fields = ('name',)
+
+
+@admin.register(Tag)
+class TagAdmin(admin.ModelAdmin):
+
+    list_display = (
+        'id',
+        'name',
+        'color',
+        'slug',
+    )
+    search_fields = ('name',)
+    list_filter = ('name',)
+
+
+@admin.register(ShoppingCart)
+class ShoppingCartAdmin(admin.ModelAdmin):
+
+    list_display = (
+        'id',
+        'user',
+        'recipe',
+    )
+    search_fields = (
+        'user',
+        'recipe'
+    )
+    list_filter = (
+        'user',
+        'recipe'
+    )
+
+
+@admin.register(FavoriteRecipe)
+class FavoriteRecipeAdmin(admin.ModelAdmin):
+
+    list_display = (
+        'id',
+        'user',
+        'favorite_recipe',
+    )
+    search_fields = ('user',)
+    list_filter = ('user',)
+
+
+@admin.register(Subscribe)
+class SubscribeAdmin(admin.ModelAdmin):
+    list_display = (
+        'id',
+        'author',
+        'user',
+        'follow_date'
+    )
+    search_fields = (
+        'author',
+        'follow_date')
+    list_filter = (
+        'author',
+        'user',
+        'follow_date')
