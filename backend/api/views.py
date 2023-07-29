@@ -161,7 +161,7 @@ class SubscribeViewSet(CreateDestroyViewSet):
             author_id=user_id
         ).exists():
             return Response(
-                f'Вы не были подписаны на автора',
+                'Вы не были подписаны на автора',
                 status=status.HTTP_400_BAD_REQUEST
             )
         get_object_or_404(
@@ -201,7 +201,7 @@ class FavoriteRecipeViewSet(CreateDestroyViewSet):
             'favorite_recipe'
         ).filter(favorite_recipe_id=recipe_id).exists():
             return Response(
-                f'Рецепт не в избранном',
+                'Рецепт не в избранном',
                 status=status.HTTP_400_BAD_REQUEST
             )
         get_object_or_404(
@@ -241,7 +241,7 @@ class ShoppingCartViewSet(CreateDestroyViewSet):
             'recipe'
         ).filter(recipe_id=recipe_id).exists():
             return Response(
-                f'Рецепта нет в корзине',
+                'Рецепта нет в корзине',
                 status=status.HTTP_400_BAD_REQUEST
             )
         get_object_or_404(

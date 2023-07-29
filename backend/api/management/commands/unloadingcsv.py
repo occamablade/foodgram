@@ -8,14 +8,15 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         with open(
-                f'{CSV_FILES_UP}/ingredients.csv', encoding='utf-8'
+                f'{CSV_FILES_UP}/ingredients.csv',
+                encoding='utf-8'
         ) as file:
             reader = csv.reader(file)
             for item in reader:
                 name, unit = item
-                ingredient = Ingredient.objects.get_or_create(
+                Ingredient.objects.get_or_create(
                     name=name,
-                    measurement_unit=unit,
+                    measurement_unit=unit
                 )
 
         print('Добавлены ингредиенты', Ingredient.objects.count())

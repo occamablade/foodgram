@@ -1,7 +1,6 @@
 from django.db import models
 from django.core.validators import MinValueValidator
 from users.models import User
-# from django.conf import settings
 from django.core import validators
 
 
@@ -34,15 +33,11 @@ class Tag(models.Model):
     color = models.CharField(
         max_length=7,
         verbose_name='Цвет в НЕХ',
-        default='#33FFD4',
-        # null=True,
-        # blank=True,
-        # unique=True,
     )
     slug = models.SlugField(
         max_length=200,
         verbose_name='Уникальный слаг',
-        validators=[validators.RegexValidator(regex='^[-a-zA-Z0-9_]+$')],
+        validators=[validators.RegexValidator(regex=r'^[-a-zA-Z0-9_]+$')],
         unique=True
     )
 
@@ -71,7 +66,6 @@ class Recipe(models.Model):
         Ingredient,
         verbose_name='Список ингредиентов',
         through='IngredientsInRecipe',
-        # through_fields=('recipe', 'ingredient')
     )
     name = models.CharField(
         max_length=200,
