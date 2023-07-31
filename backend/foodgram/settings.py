@@ -126,3 +126,23 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CSV_FILES_UP = os.path.join(BASE_DIR, 'data')
+
+LENGTH_EMAIL = 254
+
+LENGTH_USERNAME = 150
+
+LENGTH_NAME = 150
+
+LENGTH_NAME_ING = 200
+
+LENGTH_UNIT = 200
+
+LENGTH_NAME_TAG = 200
+
+LENGTH_COLOR = 7
+
+LENGTH_SLUG_TAG = 200
+
+LENGTH_NAME_RECIPE = 200
+
+IMAGE_DIR = 'recipe/image/'
