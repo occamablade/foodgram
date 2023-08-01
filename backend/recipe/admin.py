@@ -19,7 +19,6 @@ class IngredientsInRecipeInline(admin.TabularInline):
 @admin.register(Recipe)
 class RecipeAdmin(admin.ModelAdmin):
 
-
     list_display = (
         'id',
         'name',
@@ -43,7 +42,7 @@ class RecipeAdmin(admin.ModelAdmin):
 
     def count_favorite(self, obj):
         return FavoriteRecipe.objects.filter(recipe=obj).count()
-    
+
     count_favorite.short_description = 'В избранном'
 
 

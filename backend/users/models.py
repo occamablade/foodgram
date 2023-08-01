@@ -16,7 +16,7 @@ class User(AbstractUser):
         max_length=settings.LENGTH_USERNAME,
         verbose_name='Уникальный юзернейм',
         unique=True,
-        # validators=[validators.RegexValidator(regex=r'^[\w.@+-]+\z')]
+        validators=[validators.RegexValidator(regex=r'^[\w.@+-]+\z')]
     )
     first_name = models.CharField(
         max_length=settings.LENGTH_NAME,
