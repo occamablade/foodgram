@@ -13,7 +13,7 @@ from .models import (
 
 class IngredientsInRecipeInline(admin.TabularInline):
     model = IngredientsInRecipe
-    extra = 2
+    extra = 0
 
 
 @admin.register(Recipe)
