@@ -3,25 +3,17 @@ from django.core.validators import MinValueValidator
 from users.models import User
 from django.core import validators
 
-from foodgram.settings import (
-    LENGTH_NAME_ING,
-    LENGTH_UNIT,
-    LENGTH_NAME_TAG,
-    LENGTH_COLOR,
-    LENGTH_SLUG_TAG,
-    LENGTH_NAME_RECIPE,
-    IMAGE_DIR
-)
+from foodgram import settings
 
 
 class Ingredient(models.Model):
 
     name = models.CharField(
-        max_length=LENGTH_NAME_ING,
+        max_length=settings.LENGTH_NAME_ING,
         verbose_name='Название ингредиента'
     )
     measurement_unit = models.CharField(
-        max_length=LENGTH_UNIT,
+        max_length=settings.LENGTH_UNIT,
         verbose_name='Единица измерения'
     )
 
@@ -36,18 +28,18 @@ class Ingredient(models.Model):
 class Tag(models.Model):
 
     name = models.CharField(
-        max_length=LENGTH_NAME_TAG,
+        max_length=settings.LENGTH_NAME_TAG,
         verbose_name='Название тега',
         unique=True
     )
     color = models.CharField(
-        max_length=LENGTH_COLOR,
+        max_length=settings.LENGTH_COLOR,
         verbose_name='Цвет в НЕХ',
     )
     slug = models.SlugField(
-        max_length=LENGTH_SLUG_TAG,
+        max_length=settings.LENGTH_SLUG_TAG,
         verbose_name='Уникальный слаг',
-        validators=[validators.RegexValidator(regex=r'^[-a-zA-Z0-9_]+$')],
+        # validators=[validators.RegexValidator(regex=r'^[-a-zA-Z0-9_]+$')],
         unique=True
     )
 
@@ -78,11 +70,11 @@ class Recipe(models.Model):
         through='IngredientsInRecipe',
     )
     name = models.CharField(
-        max_length=LENGTH_NAME_RECIPE,
+        max_length=settings.LENGTH_NAME_RECIPE,
         verbose_name='Название рецепта'
     )
     image = models.ImageField(
-        upload_to=IMAGE_DIR,
+        upload_to=settings.IMAGE_DIR,
         verbose_name='Фото'
     )
     text = models.TextField(

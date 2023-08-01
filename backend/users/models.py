@@ -2,32 +2,28 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.core import validators
 
-from foodgram.settings import (
-    LENGTH_EMAIL,
-    LENGTH_USERNAME,
-    LENGTH_NAME
-)
+from foodgram import settings
 
 
 class User(AbstractUser):
 
     email = models.EmailField(
-        max_length=LENGTH_EMAIL,
+        max_length=settings.LENGTH_EMAIL,
         verbose_name='Адрес электронной почты',
         unique=True
     )
     username = models.CharField(
-        max_length=LENGTH_USERNAME,
+        max_length=settings.LENGTH_USERNAME,
         verbose_name='Уникальный юзернейм',
         unique=True,
-        validators=[validators.RegexValidator(regex=r'^[\w.@+-]+\z')]
+        # validators=[validators.RegexValidator(regex=r'^[\w.@+-]+\z')]
     )
     first_name = models.CharField(
-        max_length=LENGTH_NAME,
+        max_length=settings.LENGTH_NAME,
         verbose_name='Имя'
     )
     last_name = models.CharField(
-        max_length=LENGTH_NAME,
+        max_length=settings.LENGTH_NAME,
         verbose_name='Фамилия'
     )
 

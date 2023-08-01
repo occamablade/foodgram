@@ -13,13 +13,12 @@ from .models import (
 
 class IngredientsInRecipeInline(admin.TabularInline):
     model = IngredientsInRecipe
-    extra = 1
+    extra = 2
 
 
 @admin.register(Recipe)
 class RecipeAdmin(admin.ModelAdmin):
 
-    inlines = (IngredientsInRecipeInline, )
 
     list_display = (
         'id',
@@ -40,8 +39,12 @@ class RecipeAdmin(admin.ModelAdmin):
         'tags'
     )
 
+    inlines = (IngredientsInRecipeInline, )
+
     def count_favorite(self, obj):
         return FavoriteRecipe.objects.filter(recipe=obj).count()
+    
+    count_favorite.short_description = 'В избранном'
 
 
 @admin.register(Ingredient)
