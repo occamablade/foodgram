@@ -44,7 +44,7 @@ class UserListSerializer(UserSerializer):
                     author=obj).exists())
 
 
-class UserCreateSerializer(UserCreateSerializer):
+class  UserCreateSerializer(UserCreateSerializer):
 
     class Meta:
         model = User
