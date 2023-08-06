@@ -158,11 +158,10 @@ class SubscribeViewSet(CreateDestroyViewSet):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-# class FavoriteRecipeViewSet(CreateDestroyViewSet):
 class FavoriteRecipeViewSet(viewsets.ModelViewSet):
 
     serializer_class = FavoriteRecipeSerializer
-    
+
     def get_queryset(self):
         user = self.request.user.id
         return FavoriteRecipe.objects.filter(user=user)

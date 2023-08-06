@@ -33,7 +33,7 @@ class UserListSerializer(UserSerializer):
                     author=obj).exists())
 
 
-class  UserCreateSerializer(UserCreateSerializer):
+class UserCreateSerializer(UserCreateSerializer):
 
     class Meta:
         model = User
@@ -349,7 +349,6 @@ class SubscribeSerializer(serializers.ModelSerializer):
             user=self.context.get('request').user,
             author=obj.author
         )
-        # return subscribe
         if subscribe:
             return True
         return False
@@ -377,7 +376,6 @@ class FavoriteRecipeSerializer(serializers.ModelSerializer):
 
     def validate(self, data):
         user = self.context.get('request').user
-        # favorite_recipe = self.context.get('recipe')
         recipe = self.context.get('recipe_id')
         if FavoriteRecipe.objects.filter(
             user=user,
