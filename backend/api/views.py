@@ -2,38 +2,24 @@ from django.contrib.auth import get_user_model
 from django.db.models import Sum
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
+from django_filters.rest_framework import DjangoFilterBackend
 from djoser.views import UserViewSet
+from recipe.models import (FavoriteRecipe, Ingredient, Recipe, ShoppingCart,
+                           Subscribe, Tag)
 from rest_framework import status, viewsets
 from rest_framework.decorators import action
-from rest_framework.permissions import (
-    SAFE_METHODS,
-    IsAuthenticated,
-    IsAuthenticatedOrReadOnly
-)
+from rest_framework.permissions import (SAFE_METHODS, IsAuthenticated,
+                                        IsAuthenticatedOrReadOnly)
 from rest_framework.response import Response
-from recipe.models import (
-    FavoriteRecipe,
-    Ingredient,
-    Recipe,
-    ShoppingCart,
-    Tag,
-    Subscribe
-)
+
 from .filters import IngredientFilter, RecipeFilter
 from .mixins import CreateDestroyViewSet
 from .permissions import IsAuthorOrReadOnly
-from .serializers import (
-    FavoriteRecipeSerializer,
-    IngredientSerializer,
-    RecipeEditSerializer,
-    RecipeReadSerializer,
-    SetPasswordSerializer,
-    ShoppingCartSerializer,
-    SubscribeSerializer,
-    TagSerializer,
-    UserCreateSerializer,
-    UserListSerializer
-)
+from .serializers import (FavoriteRecipeSerializer, IngredientSerializer,
+                          RecipeEditSerializer, RecipeReadSerializer,
+                          SetPasswordSerializer, ShoppingCartSerializer,
+                          SubscribeSerializer, TagSerializer,
+                          UserCreateSerializer, UserListSerializer)
 
 User = get_user_model()
 
@@ -42,6 +28,7 @@ class RecipeViewSet(viewsets.ModelViewSet):
 
     queryset = Recipe.objects.all()
     permission_classes = (IsAuthenticatedOrReadOnly, IsAuthorOrReadOnly)
+    filter_backends = (DjangoFilterBackend, )
     filterset_class = RecipeFilter
 
     def get_serializer_class(self):
@@ -171,10 +158,11 @@ class SubscribeViewSet(CreateDestroyViewSet):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-class FavoriteRecipeViewSet(CreateDestroyViewSet):
+# class FavoriteRecipeViewSet(CreateDestroyViewSet):
+class FavoriteRecipeViewSet(viewsets.ModelViewSet):
 
     serializer_class = FavoriteRecipeSerializer
-
+    
     def get_queryset(self):
         user = self.request.user.id
         return FavoriteRecipe.objects.filter(user=user)

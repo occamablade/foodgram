@@ -1,7 +1,8 @@
 import csv
+
 from django.core.management.base import BaseCommand
-from recipe.models import Ingredient
 from foodgram.settings import CSV_FILES_UP
+from recipe.models import Ingredient
 
 
 class Command(BaseCommand):

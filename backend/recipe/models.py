@@ -1,9 +1,8 @@
-from django.db import models
-from django.core.validators import MinValueValidator
-from users.models import User
 from django.core import validators
-
+from django.core.validators import MinValueValidator
+from django.db import models
 from foodgram import settings
+from users.models import User
 
 
 class Ingredient(models.Model):
