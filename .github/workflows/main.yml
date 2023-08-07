@@ -104,7 +104,7 @@ jobs:
         key: ${{ secrets.SSH_KEY }}
         passphrase: ${{ secrets.SSH_PASSPHRASE }}
         script: |
-          cd foodgram/infra
+          cd foodgram
           sudo docker-compose -f docker-compose.yml down
           sudo docker-compose -f docker-compose.yml pull
           sudo docker-compose -f docker-compose.yml up -d
@@ -112,7 +112,6 @@ jobs:
           sudo docker-compose -f docker-compose.yml exec backend python manage.py migrate
           sudo docker-compose -f docker-compose.yml exec backend python manage.py unloadingcsv
           sudo docker-compose -f docker-compose.yml exec backend python manage.py collectstatic
-          # sudo docker-compose -f docker-compose.yml exec backend cp -r /app/static/. /backend_static/static/
 
   send_message:
       runs-on: ubuntu-latest
