@@ -30,10 +30,10 @@
  добавлять в избранное и добавлять их в список покупок, который можно скачать в формате txt с перечнем необходимых продуктов и 
  ингредиентов для рецептов в списке покупок.
 
- Проект доступен по домену: http://foodgramprojectocc.sytes.net
- Админ-зона: http://foodgramprojectocc.sytes.net/admin
- Обычный пользователь: логин: zxcghoul, пароль:ivanivan@a.ru, почта:zxcghoul@a.ru
- Суперпользователь: логин: admin, пароль:admin, почта:admin@a.ru
+ * Проект доступен по домену: http://foodgramprojectocc.sytes.net
+ * Админ-зона: http://foodgramprojectocc.sytes.net/admin
+ * Обычный пользователь: логин: zxcghoul, пароль:zxcghoul, почта:zxcghoul@a.ru
+ * Суперпользователь: логин: admin, пароль:admin, почта:admin@a.ru
  
  ***Локальный запуск проекта***
 
