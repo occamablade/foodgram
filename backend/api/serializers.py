@@ -1,12 +1,14 @@
+from rest_framework import serializers
 from django.contrib.auth import get_user_model
-from django.contrib.auth.hashers import check_password
-from django.core.validators import MinValueValidator
 from djoser.serializers import (PasswordSerializer, UserCreateSerializer,
                                 UserSerializer)
+from django.contrib.auth.hashers import check_password
+from django.core.validators import MinValueValidator
 from drf_extra_fields.fields import Base64ImageField
+
 from recipe.models import (FavoriteRecipe, Ingredient, IngredientsInRecipe,
                            Recipe, ShoppingCart, Subscribe, Tag)
-from rest_framework import serializers
+
 
 User = get_user_model()
 
