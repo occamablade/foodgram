@@ -34,7 +34,7 @@ class RecipeAdmin(admin.ModelAdmin):
     inlines = (IngredientsInRecipeInline, )
 
     def count_favorite(self, obj):
-        return FavoriteRecipe.objects.filter(recipe=obj).count()
+        return FavoriteRecipe.objects.filter(favorite_recipe=obj).count()
 
     count_favorite.short_description = 'В избранном'
 
@@ -47,7 +47,6 @@ class IngredientAdmin(admin.ModelAdmin):
         'name',
         'measurement_unit',
     )
-    list_filter = ('name',)
     search_fields = ('name',)
 
 
